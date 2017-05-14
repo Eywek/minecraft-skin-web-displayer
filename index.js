@@ -7,7 +7,7 @@ app.get('/head/:username/:size?', function (req, res) {
   console.info('Display head skin for ' + req.params.username)
 
   var filename = '/var/www/skins/' + req.params.username + '.png'
-  var size = req.params.size || 64
+  var size = (req.params.size && req.params.size < 900) ? req.params.size : 64
 
   fs.stat(filename, function (err, stat) {
     if (err)
